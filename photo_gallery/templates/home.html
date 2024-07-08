@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold mb-4">Photo Gallery</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for photo in photos %}
+      <div class="bg-white p-4 rounded shadow">
+        <a href="{% url 'photo_detail' photo.id %}">
+          <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full max-w-full max-h-48 object-contain rounded">
+          <h2 class="text-lg font-bold mt-2">{{ photo.title }}</h2>
+        </a>
+        <p class="text-sm text-gray-600">{{ photo.tags }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+

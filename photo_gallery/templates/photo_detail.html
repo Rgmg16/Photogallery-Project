@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4">{{ photo.title }}</h2>
+  <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-96 object-cover">
+  <p class="mt-4">{{ photo.description }}</p>
+  <p class="mt-2">{{ photo.tags }}</p>
+  <form action="{% url 'like_photo' photo.id %}" method="post" class="mt-4">
+    {% csrf_token %}
+    <button type="submit" class="bg-blue-600 text-white p-2 rounded">
+      {% if user in photo.likes.all %}
+        Unlike
+      {% else %}
+        Like
+      {% endif %}
+    </button>
+  </form>
+{% endblock %}
